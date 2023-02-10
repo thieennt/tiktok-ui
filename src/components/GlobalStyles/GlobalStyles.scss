@@ -2,9 +2,15 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Manrope:wght@400;700;800&display=swap');
 
 :root {
+    --primary: #fe2c55;
+    --black: #000;
+    --white: #fff;
+    --text-color: rgba(22, 24, 35, 1);
+
     // default layout
     --default-layout-header-height: 60px;
     --default-layout-width: 1150px;
+    --default-layout-horizontal-spacer: 24px;
 }
 
 * {
@@ -21,4 +27,37 @@ body {
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
+}
+
+button,
+input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+a[href] {
+    color: var(--text-color);
+    text-decoration: none;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+// Custom tippy tooltip
+body {
+    .tippy-box {
+        border-radius: 8px;
+        font-weight: 400;
+        font-size: 1.3rem;
+        line-height: 2rem;
+        background-color: rgba(84, 84, 84, 0.92);
+    }
+
+    .tippy-arrow {
+        color: rgba(84, 84, 84, 0.92);
+    }
+
+    .tippy-content {
+        padding: 8px 10px;
+    }
 }
