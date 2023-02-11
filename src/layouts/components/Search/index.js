@@ -6,7 +6,7 @@ import 'tippy.js/dist/tippy.css';
 import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import * as searchService from '~/apiServices/searchServices';
+import * as searchService from '~/services/searchService';
 import AccountItem from '~/components/AccountItem';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 
