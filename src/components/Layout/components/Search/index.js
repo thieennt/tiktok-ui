@@ -1,16 +1,17 @@
-import classNames from 'classnames/bind';
 import HeadlessTippy from '@tippyjs/react/headless';
+import classNames from 'classnames/bind';
+import { useEffect, useRef, useState } from 'react';
 import 'tippy.js/dist/tippy.css';
 
-import styles from './Search.module.scss';
-
-import { Wrapper as PopperWrapper } from '~/components/Popper';
-import AccountItem from '~/components/AccountItem';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useRef, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import * as searchService from '~/apiServices/searchServices';
+import AccountItem from '~/components/AccountItem';
+import { Wrapper as PopperWrapper } from '~/components/Popper';
 
 import { useDebounce } from '~/hooks';
+import styles from './Search.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -32,17 +33,17 @@ const Search = () => {
             return;
         }
 
-        setLoading(true);
+        const fetchApi = async () => {
+            setLoading(true);
 
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res.data);
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
+            const results = await searchService.search(encodeURIComponent(debounced));
+            console.log(results);
+
+            setSearchResult(results);
+            setLoading(false);
+        };
+
+        fetchApi();
     }, [debounced]);
 
     const handleClear = () => {
@@ -62,9 +63,8 @@ const Search = () => {
             render={(attrs) => (
                 <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                     <PopperWrapper>
-                        Search Results
                         <h4 className={cx('search-title')}>Accounts</h4>
-                        {searchResult.map((item, index) => (
+                        {searchResult.map((item) => (
                             <AccountItem key={item.id} data={item} />
                         ))}
                     </PopperWrapper>

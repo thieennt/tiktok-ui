@@ -7,6 +7,7 @@ const useDebounce = (value, delay) => {
         const timeId = setTimeout(() => setDebounceValue(value), delay);
 
         return () => clearTimeout(timeId);
+        // eslint-disable-next-line
     }, [value]);
 
     return debounceValue;
