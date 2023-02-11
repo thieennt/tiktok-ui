@@ -9,19 +9,19 @@ import { AiOutlineQuestionCircle } from 'react-icons/ai';
 import { BiMessageMinus } from 'react-icons/bi';
 import { BsCloudArrowUp, BsGearWide } from 'react-icons/bs';
 import { FiLogOut } from 'react-icons/fi';
-import { HiOutlineUserCircle } from 'react-icons/hi';
 import { IoEarthOutline, IoPaperPlaneOutline } from 'react-icons/io5';
 import { MdOutlineKeyboard } from 'react-icons/md';
+import { RiUserLine } from 'react-icons/ri';
 import { TbCoin } from 'react-icons/tb';
 
 import images from '~/assets/images';
 import styles from './Header.module.scss';
 
+import { Link } from 'react-router-dom';
 import Button from '~/components/Button';
 import Image from '~/components/Image';
 import Menu from '~/components/Popper/Menu';
 import Search from '../Search';
-import { Link } from 'react-router-dom';
 
 import routesConfig from '~/config/routes';
 
@@ -74,7 +74,7 @@ const Header = () => {
 
     const userMenu = [
         {
-            icon: <HiOutlineUserCircle />,
+            icon: <RiUserLine />,
             title: 'View profile',
             to: '/following',
         },
