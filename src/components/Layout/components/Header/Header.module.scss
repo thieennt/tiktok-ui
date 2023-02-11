@@ -17,6 +17,11 @@
     padding: 0 var(--default-layout-horizontal-spacer);
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+}
+
 .custom-btn {
     color: #969494;
 }
