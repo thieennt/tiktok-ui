@@ -6,6 +6,7 @@ import Upload from '~/pages/Upload';
 import { HeaderOnly } from '~/layouts';
 
 import config from '~/config';
+import Live from '~/pages/Live';
 
 // Public routes
 const publicRoutes = [
@@ -13,6 +14,7 @@ const publicRoutes = [
     { path: config.routes.following, component: Following },
     { path: config.routes.profile, component: Profile },
     { path: config.routes.upload, component: Upload, layout: HeaderOnly },
+    { path: config.routes.live, component: Live },
 ];
 
 // Private routes

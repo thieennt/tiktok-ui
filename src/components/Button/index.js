@@ -75,7 +75,7 @@ Button.propTypes = {
     rounded: PropTypes.bool,
     small: PropTypes.bool,
     large: PropTypes.bool,
-    text: PropTypes.string,
+    text: PropTypes.bool,
     disabled: PropTypes.string,
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
