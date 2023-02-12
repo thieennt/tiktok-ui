@@ -15,9 +15,10 @@
 
     input {
         flex: 1;
+        height: 100%;
+        padding-right: 40px;
         color: #828282;
         font-size: 1.6rem;
-        height: 100%;
         caret-color: var(--primary);
     }
 

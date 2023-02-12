@@ -1,12 +1,14 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 import classNames from 'classnames/bind';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
-import styles from './Menu.module.scss';
-import MenuItem from './MenuItem';
+
 import Header from './Header';
-import { useState } from 'react';
+import MenuItem from './MenuItem';
+import { Wrapper as PopperWrapper } from '~/components/Popper';
+
+import styles from './Menu.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -34,6 +36,15 @@ const Menu = ({ children, items = [], hideOnClick = false, onChange = defaultFn 
             );
         });
     };
+
+    const handleResetMenu = () => {
+        setHistory((prev) => prev.slice(0, 1));
+    };
+
+    const handleBackMenu = () => {
+        setHistory((prev) => prev.slice(0, prev.length - 1));
+    };
+
     return (
         <Tippy
             // visible
@@ -42,20 +53,15 @@ const Menu = ({ children, items = [], hideOnClick = false, onChange = defaultFn 
             offset={[16, 8]}
             placement="bottom-end"
             hideOnClick={hideOnClick}
+            onHide={handleResetMenu}
             render={(attrs) => (
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
                     <PopperWrapper className={cx('menu-popper')}>
-                        {history.length > 1 && (
-                            <Header
-                                title={currentMenu.title}
-                                onBack={() => setHistory((prev) => prev.slice(0, prev.length - 1))}
-                            />
-                        )}
+                        {history.length > 1 && <Header title={currentMenu.title} onBack={handleBackMenu} />}
                         <div className={cx('menu-body')}>{renderItems()}</div>
                     </PopperWrapper>
                 </div>
             )}
-            onHide={() => setHistory((prev) => prev.slice(0, 1))}
         >
             {children}
         </Tippy>
